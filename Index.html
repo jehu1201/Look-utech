@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Look@Utech</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+
+        header {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .category-card, .subcategory-card {
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .category-card:hover, .subcategory-card:hover {
+            transform: scale(1.05);
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #0d457c;
+            color: rgb(196, 218, 5);
+            margin-top: 20px;
+        }
+
+        #map {
+            width: 100%;
+            height: 400px;
+            margin-top: 20px;
+        }
+
+        #coordinates-display {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #ffffff;
+            display: none;
+        }
+
+        h3 {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Look@Utech</h1>
+    </header>
+
+    <div class="container">
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3127.210627217788!2d-76.74615342584322!3d18.018181484329364!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8edb3ed77252d65f%3A0xbe483695dda08fef!2sUniversity%20of%20Technology%2C%20Jamaica!5e1!3m2!1sen!2sjm!4v1734674298617!5m2!1sen!2sjm"
+            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+        <div id="categories" class="categories">
+            <div class="category-card" onclick="showCoordinates('Juicy Patties')">Juicy Patties</div>
+            <div class="category-card" onclick="showCoordinates('Construction Lab 7C')">Construction Lab 7C</div>
+            <div class="category-card" onclick="showCoordinates('LT48')">LT48</div>
+            <!-- Add more categories -->
+       
+
+      
+            </div>
+            <div id="subcategories-FELS" class="subcategories">
+                <h3>Classrooms (Ground Floor)</h3>
+                <div class="subcategory-card" onclick="showCoordinates('Construction Lab 7C')">Construction Lab 7C</div>
+                <div class="subcategory-card" onclick="showCoordinates('Electrical Lab 7B')">Electrical Lab 7B</div>
+                <div class="subcategory-card" onclick="showCoordinates('Mechanical Lab 7A')">Mechanical Lab 7A</div>
+                <div class="subcategory-card" onclick="showCoordinates('FELS Female Bathroom')">FELS Female Bathroom</div>
+                <div class="subcategory-card" onclick="showCoordinates('FELS Male Bathroom')">FELS Male Bathroom</div>
+                <div class="subcategory-card" onclick="showCoordinates('ADPM Lab 8A4')">ADPM Lab 8A4</div>
+                <div class="subcategory-card" onclick="showCoordinates('Food Service Production Lab 8A6')">Food Service Production Lab 8A6</div>
+                <div class="subcategory-card" onclick="showCoordinates('LT 9')">LT 9</div>
+                <div class="subcategory-card" onclick="showCoordinates('Graduate Studies')">Graduate Studies</div>
+                <h3>Classrooms (3rd Floor)</h3>
+                <div class="subcategory-card" onclick="showCoordinates('8C7A')">8C7A</div>
+                <div class="subcategory-card" onclick="showCoordinates('8C8A')">8C8A</div>
+                <div class="subcategory-card" onclick="showCoordinates('8C6A')">8C6A</div>
+                <div class="subcategory-card" onclick="showCoordinates('Graduate Students Lounge')">Graduate Students Lounge</div>
+                <div class="subcategory-card" onclick="showCoordinates('Conference Room')">Conference Room</div>
+                <div class="subcategory-card" onclick="showCoordinates('FELS Office 3rd Floor')">FELS Office</div>
+                <div class="subcategory-card" onclick="showCoordinates('8C3')">8C3</div>
+                <div class="subcategory-card" onclick="showCoordinates('8C2')">8C2</div>
+                <div class="subcategory-card" onclick="showCoordinates('8C11')">8C11</div>
+                <div class="subcategory-card" onclick="showCoordinates('8C12')">8C12</div>
+                <div class="subcategory-card" onclick="showCoordinates('8C1')">8C1</div>
+                <h3>Classrooms (2nd Floor)</h3>
+                <div class="subcategory-card" onclick="showCoordinates('8B1A')">8B1A</div>
+                <div class="subcategory-card" onclick="showCoordinates('8B1B')">8B1B</div>
+                <div class="subcategory-card" onclick="showCoordinates('Studio')">Studio</div>
+                <div class="subcategory-card" onclick="showCoordinates('8B2')">8B2</div>
+                <div class="subcategory-card" onclick="showCoordinates('Studio 2')">Studio 2</div>
+                <div class="subcategory-card" onclick="showCoordinates('FELS Office 2nd Floor')">FELS Office</div>
+                <div class="subcategory-card" onclick="showCoordinates('8A3')">8A3</div>
+                <div class="subcategory-card" onclick="showCoordinates('8A2')">8A2</div>
+                <div class="subcategory-card" onclick="showCoordinates('8A1')">8A1</div>
+                <div class="subcategory-card" onclick="showCoordinates('8A1 Drawing Room')">8A1 Drawing Room</div>
+                <div class="subcategory-card" onclick="showCoordinates('8A4W')">8A4W</div>
+                <div class="subcategory-card" onclick="showCoordinates('8A12')">8A12</div>
+            </div>
+        </div>
+        <div id="categories" class="categories">
+            <!-- Existing categories... -->
+        
+            <!-- Lecture Theater Category -->
+            <div class="category-card" onclick="toggleSubcategories('subcategories-lecture-theater')">
+                Lecture Theaters
+            </div>
+            <div id="subcategories-lecture-theater" class="subcategories">
+                <h3>Lecture Theater Locations</h3>
+                <div class="subcategory-card" onclick="showCoordinates('LT48')">LT48</div>
+                <div class="subcategory-card" onclick="showCoordinates('LT49')">LT49</div>
+                <div class="subcategory-card" onclick="showCoordinates('LT50')">LT50</div>
+                <div class="subcategory-card" onclick="showCoordinates('Male Bathroom')">Male Bathroom</div>
+                <div class="subcategory-card" onclick="showCoordinates('Staff Bathroom')">Staff Bathroom</div>
+                <div class="subcategory-card" onclick="showCoordinates('Female Bathroom')">Female Bathroom</div>
+            </div>
+        </div>
+        
+        <div class="category-card" onclick="toggleSubcategories('subcategories-Business')">
+            School of Business
+        </div>
+        <div id="subcategories-Business" class="subcategories">
+            <h3>Ground Floor</h3>
+            <div class="subcategory-card" onclick="showCoordinates('COLLEGE OF BUSINESS AND MANAGEMENT advisement unit')">COLLEGE OF BUSINESS AND MANAGEMENT advisement unit</div>
+            <div class="subcategory-card" onclick="showCoordinates('construction Engineering lab')">Construction Engineering lab</div>
+            <div class="subcategory-card" onclick="showCoordinates('workshop 6')">Workshop 6</div>
+            <div class="subcategory-card" onclick="showCoordinates('thermal engineering science (internal combustion lab) 6A3')">Thermal Engineering Science (Internal Combustion Lab) 6A3</div>
+            <div class="subcategory-card" onclick="showCoordinates('refrigeration and air conditioning lab 6A1')">Refrigeration and Air Conditioning Lab 6A1</div>
+    
+            <h3>School of Business Administration (Ground Floor)</h3>
+            <div class="subcategory-card" onclick="showCoordinates('5A1')">5A1</div>
+            <div class="subcategory-card" onclick="showCoordinates('5A2')">5A2</div>
+            <div class="subcategory-card" onclick="showCoordinates('5A3')">5A3</div>
+            <div class="subcategory-card" onclick="showCoordinates('5A4')">5A4</div>
+            <div class="subcategory-card" onclick="showCoordinates('5A5 academic staff room')">5A5 Academic Staff Room</div>
+            <div class="subcategory-card" onclick="showCoordinates('bathrooms')">Bathrooms</div>
+            <div class="subcategory-card" onclick="showCoordinates('5A6 school rep office')">5A6 School Rep Office</div>
+    
+            <h3>2nd Floor</h3>
+            <div class="subcategory-card" onclick="showCoordinates('5b6 academic staff room 1')">5B6 Academic Staff Room 1</div>
+            <div class="subcategory-card" onclick="showCoordinates('5b7 academic staff room 2')">5B7 Academic Staff Room 2</div>
+            <div class="subcategory-card" onclick="showCoordinates('5b5')">5B5</div>
+            <div class="subcategory-card" onclick="showCoordinates('5b4')">5B4</div>
+            <div class="subcategory-card" onclick="showCoordinates('5b8 bathroom')">5B8 Bathroom</div>
+    
+            <h3>3rd Floor</h3>
+            <div class="subcategory-card" onclick="showCoordinates('SOBA administrative office')">SOBA Administrative Office</div>
+            <div class="subcategory-card" onclick="showCoordinates('business and management student affairs and advisement centre')">Business and Management Student Affairs and Advisement Centre</div>
+            <div class="subcategory-card" onclick="showCoordinates('college of business and management academic staff offices')">College of Business and Management Academic Staff Offices</div>
+        </div>
+    </div> 
+    <div class="category-card" onclick="toggleSubcategories('subcategories-LandManagement')">
+        School of Land Management
+    </div>
+    <div id="subcategories-LandManagement" class="subcategories">
+        <h3>Ground Floor</h3>
+        <div class="subcategory-card" onclick="showCoordinates('female bathroom')">Female Bathroom</div>
+        <div class="subcategory-card" onclick="showCoordinates('4a17')">4A17</div>
+        <div class="subcategory-card" onclick="showCoordinates('4A16B')">4A16B</div>
+        <div class="subcategory-card" onclick="showCoordinates('4A16A bachelor of science in medical tech')">4A16A Bachelor of Science in Medical Tech</div>
+        <div class="subcategory-card" onclick="showCoordinates('male bathroom')">Male Bathroom</div>
+        <div class="subcategory-card" onclick="showCoordinates('4A12')">4A12</div>
+        <div class="subcategory-card" onclick="showCoordinates('4A11')">4A11</div>
+        <div class="subcategory-card" onclick="showCoordinates('4A10')">4A10</div>
+        <div class="subcategory-card" onclick="showCoordinates('CONCRETE LAB')">Concrete Lab</div>
+        <div class="subcategory-card" onclick="showCoordinates('4A9')">4A9</div>
+        <div class="subcategory-card" onclick="showCoordinates('4A8')">4A8</div>
+        <div class="subcategory-card" onclick="showCoordinates('FOBE STUDENTS\' REPRESENTATIVES')">FOBE Students' Representatives</div>
+        <div class="subcategory-card" onclick="showCoordinates('4A7')">4A7</div>
+        <div class="subcategory-card" onclick="showCoordinates('4A6')">4A6</div>
+        <div class="subcategory-card" onclick="showCoordinates('FACULTY OF BUILT ENVIRONMENT STUDENT ADVISEMENT CENTER')">Faculty of Built Environment Student Advisement Center</div>
+        <div class="subcategory-card" onclick="showCoordinates('4A5')">4A5</div>
+        <div class="subcategory-card" onclick="showCoordinates('4A4')">4A4</div>
+        <div class="subcategory-card" onclick="showCoordinates('4A3')">4A3</div>
+        <div class="subcategory-card" onclick="showCoordinates('4A2')">4A2</div>
+        <div class="subcategory-card" onclick="showCoordinates('STUDIO ROOM')">Studio Room</div>
+    </div>
+  
+</div>
+<div id="categories" class="categories">
+    <!-- School of Architecture -->
+    <div class="category-card" onclick="toggleSubcategories('subcategories-Architecture')">
+        School of Architecture
+    </div>
+    <div id="subcategories-Architecture" class="subcategories">
+        <h3>2nd Floor</h3>
+        <div class="subcategory-card" onclick="showCoordinates('4B2-CSA')">4B2-CSA</div>
+        <div class="subcategory-card" onclick="showCoordinates('4B3 READING ROOM')">4B3 Reading Room</div>
+        <div class="subcategory-card" onclick="showCoordinates('SCHOOL OF BUILDING AND LAND MANAGEMENT OFFICE')">School of Building and Land Management Office</div>
+        <div class="subcategory-card" onclick="showCoordinates('SBLM CONFERENCE ROOM')">SBLM Conference Room</div>
+        <div class="subcategory-card" onclick="showCoordinates('FACULTY OF BUILT ENVIRONMENT ENVIRONMENT EXAM OFFICE')">Faculty of Built Environment Exam Office</div>
+        <div class="subcategory-card" onclick="showCoordinates('4B9')">4B9</div>
+        <div class="subcategory-card" onclick="showCoordinates('4B10 URBAN AND REGIONAL PLANNING OFFICE')">4B10 Urban and Regional Planning Office</div>
+        <div class="subcategory-card" onclick="showCoordinates('4B12')">4B12</div>
+        <div class="subcategory-card" onclick="showCoordinates('4B8')">4B8</div>
+        <div class="subcategory-card" onclick="showCoordinates('4B15')">4B15</div>
+        <div class="subcategory-card" onclick="showCoordinates('4B16')">4B16</div>
+    </div>
+
+    <!-- Hotel -->
+    <div class="category-card" onclick="showCoordinates('Hotel')">
+        Hotel
+    </div>
+
+    <!-- Student Activity Center -->
+    <div class="category-card" onclick="toggleSubcategories('subcategories-SAC')">
+        Student Activity Center
+    </div>
+    <div id="subcategories-SAC" class="subcategories">
+        <h3>Services</h3>
+        <div class="subcategory-card" onclick="showCoordinates('Barber')">Barber</div>
+        <div class="subcategory-card" onclick="showCoordinates('Nail Salon')">Nail Salon</div>
+    </div>
+
+    <!-- Nursing -->
+    <div class="category-card" onclick="showCoordinates('Nursing')">
+        Nursing
+    </div>
+
+    <!-- Recreation -->
+    <div class="category-card" onclick="toggleSubcategories('subcategories-Recreation')">
+        Recreation
+    </div>
+    <div id="subcategories-Recreation" class="subcategories">
+        <div class="subcategory-card" onclick="showCoordinates('SCIT Gazebo')">SCIT Gazebo</div>
+        <div class="subcategory-card" onclick="showCoordinates('Sculpture Park')">Sculpture Park</div>
+        <div class="subcategory-card" onclick="showCoordinates('SOBA Gazebo')">SOBA Gazebo</div>
+    </div>
+
+    <!-- SCIT -->
+    <div class="category-card" onclick="toggleSubcategories('subcategories-SCIT')">
+        SCIT (School of Computing and Information Technology)
+    </div>
+    <div id="subcategories-SCIT" class="subcategories">
+        <h3>Ground Level</h3>
+        <div class="subcategory-card" onclick="showCoordinates('Printery')">Printery</div>
+        <h3>Floor 1</h3>
+        <div class="subcategory-card" onclick="showCoordinates('2B8')">2B8</div>
+        <div class="subcategory-card" onclick="showCoordinates('2B6')">2B6</div>
+        <div class="subcategory-card" onclick="showCoordinates('2B5')">2B5</div>
+        <div class="subcategory-card" onclick="showCoordinates('2B4')">2B4</div>
+        <div class="subcategory-card" onclick="showCoordinates('2B3')">2B3</div>
+        <div class="subcategory-card" onclick="showCoordinates('2B2')">2B2</div>
+        <div class="subcategory-card" onclick="showCoordinates('2B7')">2B7</div>
+        <div class="subcategory-card" onclick="showCoordinates('Female Bathroom')">Female Bathroom</div>
+        <div class="subcategory-card" onclick="showCoordinates('Male Bathroom')">Male Bathroom</div>
+    </div>
+
+    <!-- Student Finances -->
+    <div class="category-card" onclick="showCoordinates('Student Finances')">
+        Student Finances
+    </div>
+
+    <!-- Shared Facilities -->
+    <div class="category-card" onclick="showCoordinates('Shared Facilities')">
+        Shared Facilities
+    </div>
+
+    <!-- Utech Open -->
+    <div class="category-card" onclick="showCoordinates('Utech Open')">
+        Utech Open (School of Lifelong Learning and Professional Development)
+    </div>
+
+    <!-- New Categories -->
+    <div class="category-card" onclick="showCoordinates('TIC (Technology Innovation Center)')">
+        TIC (Technology Innovation Center)
+    </div>
+    <div class="category-card" onclick="showCoordinates('Utech Field (Pavilion)')">
+        Utech Field (Pavilion)
+    </div>
+    <div class="category-card" onclick="showCoordinates('Faculty of Science & Sport')">
+        Faculty of Science & Sport
+    </div>
+    <div class="category-card" onclick="showCoordinates('Built Environment')">
+        Built Environment
+    </div>
+    <div class="category-card" onclick="showCoordinates('College of Health Sciences')">
+        College of Health Sciences
+    </div>
+    <div class="category-card" onclick="showCoordinates('School of Natural and Applied Sciences')">
+        School of Natural and Applied Sciences
+    </div>
+    <div class="category-card" onclick="showCoordinates('Utech Pharmacy')">
+        Utech Pharmacy
+    </div>
+    <div class="category-card" onclick="showCoordinates('Student Financial Services')">
+        Student Financial Services
+    </div>
+    <div class="category-card" onclick="showCoordinates('Utech Administration Building')">
+        Utech Administration Building
+    </div>
+    <div class="category-card" onclick="showCoordinates('Graduate Studies and Entrepreneurship')">
+        Graduate Studies and Entrepreneurship
+    </div>
+    <div class="category-card" onclick="showCoordinates('Office of Admissions and Enrolment Management')">
+        Office of Admissions and Enrolment Management
+    </div>
+    <div class="category-card" onclick="showCoordinates('Human Resources & Administration')">
+        Human Resources & Administration
+    </div>
+    <div class="category-card" onclick="showCoordinates('Faculty of Law')">
+        Faculty of Law
+    </div>
+    <div class="category-card" onclick="showCoordinates('Auditorium')">
+        Auditorium
+    </div>
+    <div class="category-card" onclick="showCoordinates('Pool')">
+        Pool
+    </div>
+    <div class="category-card" onclick="showCoordinates('Gym')">
+        Gym
+    </div>
+
+    <!-- Food -->
+    <div class="category-card" onclick="toggleSubcategories('subcategories-food')">
+        Food
+    </div>
+    <div id="subcategories-food" class="subcategories">
+        <h3>Food Locations</h3>
+        <div class="subcategory-card" onclick="showCoordinates('Juicy Patties')">Juicy Patties</div>
+        <div class="subcategory-card" onclick="showCoordinates('Vending Machine 1')">Vending Machine (Location 1)</div>
+        <div class="subcategory-card" onclick="showCoordinates('Inzone')">Inzone</div>
+        <div class="subcategory-card" onclick="showCoordinates('Gilly\'s')">Gilly's</div>
+        <div class="subcategory-card" onclick="showCoordinates('Voda')">Voda</div>
+        <div class="subcategory-card" onclick="showCoordinates('Reggae Jamminz')">Reggae Jamminz</div>
+        <div class="subcategory-card" onclick="showCoordinates('Burger King')">Burger King</div>
+        <div class="subcategory-card" onclick="showCoordinates('John Shop')">John Shop</div>
+        <div class="subcategory-card" onclick="showCoordinates('Submerge')">Submerge</div>
+        <div class="subcategory-card" onclick="showCoordinates('Vending Machine 2')">Vending Machine (Location 2)</div>
+        <div class="subcategory-card" onclick="showCoordinates('Nectar')">Nectar</div>
+        <div class="subcategory-card" onclick="showCoordinates('Restaurant Beside Bar')">Restaurant Beside Bar</div>
+        <div class="subcategory-card" onclick="showCoordinates('Vending Machine 3')">Vending Machine (Location 3)</div>
+        <div class="subcategory-card" onclick="showCoordinates('Vending Machine 4')">Vending Machine (Location 4)</div>
+    </div>
+
+    <!-- Money Transactions -->
+    <div class="category-card" onclick="toggleSubcategories('subcategories-money-transactions')">
+        Money Transactions
+    </div>
+    <div id="subcategories-money-transactions" class="subcategories">
+        <h3>Money Transaction Locations</h3>
+        <div class="subcategory-card" onclick="showCoordinates('Victoria Mutual')">Victoria Mutual</div>
+        <div class="subcategory-card" onclick="showCoordinates('Bill Express')">Bill Express</div>
+        <div class="subcategory-card" onclick="showCoordinates('NBC')">NBC</div>
+    </div>
+</div>
+
+    <footer>
+        <p>&copy; 2024 Look@UTech All rights reserved.</p>
+    </footer>
+
+    <script>
+        function toggleSubcategories(id) {
+            const subcategories = document.getElementById(id);
+            if (subcategories.style.display === "none") {
+                subcategories.style.display = "block";
+            } else {
+                subcategories.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
